@@ -144,8 +144,32 @@ public class Main {
 		return shuff;
 	}
 
-	int mostRepeatedValue(ArrayList<Integer> parameter) {
-		return 0;
+	//20160149
+	public int mostRepeatedValue(ArrayList<Integer>arr)
+	{
+		int menual = 0;
+		int counter = 0;
+		int tmpCount=0;
+
+		for(int i=0;i<arr.size();i++)
+		{
+			int temp = arr.get(i);
+			counter = 0;
+			for(int j=0;j<arr.size();j++)
+			{
+				if(temp == arr.get(j))
+				{
+					counter++;
+				}
+			}
+			if(counter > tmpCount)
+			{
+				menual = temp;
+				tmpCount = counter;
+			}
+		}
+
+		return menual;
 	}
 
 	ArrayList<Integer> reverseArray(ArrayList<Integer> parameter) {
