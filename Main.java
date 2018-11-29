@@ -67,7 +67,7 @@ public class Main {
 			getMinimum3Numbers(hold);
 			break;
 		case 7:
-			isDistinctArray(hold);
+			DistinctArray(hold);
 			break;
 		case 8:
 			mostRepeatedValue(hold);
@@ -121,9 +121,36 @@ public class Main {
 		ArrayList<Integer> returnValue = null;
 		return returnValue;
 	}
-
-	boolean isDistinctArray(ArrayList<Integer> parameter) {
-		return true;
+    //20160146
+	public static ArrayList<Integer> DistinctArray(ArrayList<Integer> arr)
+	{
+		int n=arr.size();
+		ArrayList<Integer> Result=new ArrayList<Integer>();
+		boolean Notprint=false;
+		for(int i=0;i<n;i++)
+		{
+			int j;
+			if(i==0)
+			{
+				Result.add(arr.get(i));
+			}
+			for(j=0; j<i ;j++)
+			{
+				if(arr.get(i)==arr.get(j))
+					break;
+				if(j+1==i)
+					Notprint=true;
+			}
+			if(Notprint==true)
+			{
+				Result.add(arr.get(i));
+			}
+			Notprint=false;
+		}
+		ArrayList<Integer> arr2=Result;
+		System.out.println(arr2);
+		
+		return arr2;
 	}
 
 	ArrayList<Integer> returnOnlyPrimes(ArrayList<Integer> parameter) {
