@@ -1,8 +1,5 @@
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
-import java.util.Vector;
-
 public class Main {
 	Scanner in = new Scanner(System.in);
 	String[] list = { "Sort", "Check palindrome", "Check sorted", "Count primes", "Get median", "Minimum 3 numbers",
@@ -13,6 +10,7 @@ public class Main {
 	public static void main(String[] args) {
 		Main m = new Main();
 		ArrayList<Integer> inputArray;
+		// the input is sepatared by spaces
 		inputArray = m.read();
 		m.start(inputArray);
 	}
@@ -22,8 +20,7 @@ public class Main {
 		System.out.println("Enter The Array : ");
 		String line = in.nextLine();
 		String[] nums = line.split(" ");
-		for(int i = 0; i < nums.length; ++i)
-		{
+		for (int i = 0; i < nums.length; ++i) {
 			input.add(Integer.parseInt(nums[i]));
 		}
 		return input;
@@ -33,14 +30,23 @@ public class Main {
 
 		System.out.println("Enter your choice :");
 		for (int i = 0; i < list.length; i++) {
-			System.out.println((i + 1) + ". " + list[i]);
+			System.out.println((i + 1) + "- " + list[i]);
 		}
-			int choice = in.nextInt();
-			operation(arr, choice);
+		int choice = in.nextInt();
+		operation(arr, choice);
 	}
 
-	public void operation(ArrayList<Integer> hold, int choice) {
+	ArrayList<Integer> copy(ArrayList<Integer> arr) {
+		ArrayList<Integer> temp = new ArrayList<Integer>();
+		for (int i = 0; i < arr.size(); ++i) {
+			temp.add(arr.get(i));
+		}
+		return temp;
+	}
 
+	public void operation(ArrayList<Integer> arr, int choice) {
+
+		ArrayList<Integer> hold = copy(arr);
 		switch (choice) {
 		case 1:
 			sort(hold);
@@ -50,6 +56,7 @@ public class Main {
 			break;
 		case 3:
 			checkSorted(hold);
+			break;
 		case 4:
 			countPrimes(hold);
 			break;
@@ -98,12 +105,10 @@ public class Main {
 		case 19:
 			return;
 		}
-
 	}
-	public void doAll(ArrayList<Integer> arr) 
-	{
-		for(int i = 1; i <= 17; ++i)
-		{
+
+	public void doAll(ArrayList<Integer> arr) {
+		for (int i = 1; i <= 17; ++i) {
 			operation(arr, i);
 		}
 	}
@@ -165,14 +170,14 @@ public class Main {
 		return null;
 	}
 
+	// 20160154
 	void sort(ArrayList<Integer> arr) {
-		for(int i = 1; i < arr.size(); ++i)
-		{
+		for (int i = 1; i < arr.size(); ++i) {
 			Integer temp = arr.get(i);
 			int j = i;
-			for(; j > 0 && temp < arr.get(j - 1); --j)
+			for (; j > 0 && temp < arr.get(j - 1); --j)
 				arr.set(j, arr.get(j - 1));
-			arr.set( j, temp);
+			arr.set(j, temp);
 		}
 		System.out.println("The sorted array :");
 		System.out.println(arr);
