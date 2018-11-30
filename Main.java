@@ -168,8 +168,18 @@ public class Main {
 	}
 
 	ArrayList<Integer> shuffle(ArrayList<Integer> parameter) {
-		ArrayList<Integer> shuff = null;
-		return shuff;
+		int len = parameter.size();
+        for (int i = 0; i < len; i++) {
+            int index = (int) (Math.random() * len);
+            int tem = parameter.get(i);
+            parameter.set(i, parameter.get(index));
+            parameter.set(index, tem);
+
+        }
+        for (int i = 0; i < len; i++) {
+            System.out.print(parameter.get(i) + " ");
+        }
+		return parameter;
 	}
 
 	//20160149
