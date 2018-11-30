@@ -115,7 +115,16 @@ public class Main {
             case 18:
                 executeAll(hold);
                 break;
+                
             case 19:
+            	if(largeprime (hold)!=-1)
+        		{System.out.println("get large prime  :"+ 	largeprime (hold));}
+        	
+    		   else 
+    			{System.out.println("Numbers you entered are not included prime nums");}
+            	
+            	break;
+            case 20:
                 return;
         }
     }
@@ -317,5 +326,39 @@ public class Main {
         }
         return ret;
     }
+    //20160099
+    public static int largeprime (ArrayList<Integer> array)
+
+    { ArrayList<Integer> sorted_arr= new ArrayList<>();
+    //loop through the numbers one by one
+    for (int i = 0; i < array.size(); i++) {
+        boolean isPrime = true;
+        if (array.get(i) == 1)
+            isPrime = false;
+        
+        else {
+            // check to see if the numbers are prime
+            for (int j = 2; j <= array.get(i) / 2; j++) 
+              {
+                if (array.get(i) % j == 0) 
+                {
+                    isPrime = false;
+                    break;
+                }
+              }
+           }
+    	        if(isPrime)
+                 sorted_arr.add(array.get(i));
+    	           
+    	                                   }//end of first for loop
+    	sorted_arr.sort(null); 
+    	
+    	if(sorted_arr.isEmpty())
+    	{return -1;}
+    	
+    	else
+    	{return sorted_arr.get(sorted_arr.size()-1);}
+    		
+    }//end of large prime function
 
 }
