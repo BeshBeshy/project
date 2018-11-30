@@ -82,7 +82,8 @@ public class Main {
 			shuffle(hold);
 			break;
 		case 12:
-			reverseArray(hold);
+			
+                        System.out.println(reverseArray(hold));
 			break;
 		case 13:
 			shiftArray(hold);
@@ -149,7 +150,12 @@ public class Main {
 	}
 
 	ArrayList<Integer> reverseArray(ArrayList<Integer> parameter) {
-		ArrayList<Integer> returnValue = null;
+		ArrayList<Integer> returnValue = new ArrayList();
+                for(int j=parameter.size()-1;j>=0;j--)
+                {
+                    int num=parameter.get(j);
+                    returnValue.add(num);
+                }
 		return returnValue;
 	}
 
