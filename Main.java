@@ -52,7 +52,12 @@ public class Main {
 			sort(hold);
 			break;
 		case 2:
-			isPalindrome(hold);
+			System.out.println("Enter a String for Palindrome Testing...");
+			Scanner scanner=new Scanner(System.in);
+			String input=scanner.nextLine();
+			ArrayList<String> array=new ArrayList<>();
+			array.add(input);
+			isPalindrome(array);
 			break;
 		case 3:
 			checkSorted(hold);
@@ -114,9 +119,27 @@ public class Main {
 		}
 	}
 
-	boolean isPalindrome(ArrayList<Integer> parameter) {
-		return true;
-	}
+    public static void isPalindrome(ArrayList<String> array){
+        String b=array.get(0);
+        char[]arr=b.toCharArray();
+        boolean palindrome=true;
+        int length = arr.length;
+        int x=(length/2);
+        if (length>0){
+            for(int i=0;i<x;i++)
+            {
+                if(arr[i]!=arr[length-1-i])
+                    palindrome=false;
+            }
+        }
+        if(palindrome==true)
+        {
+            System.out.println("True");
+        }
+        else{
+            System.out.println("False");
+        }
+    }
 
 	ArrayList<Integer> zeroIfLessThanZero(ArrayList<Integer> parameter) {
 		ArrayList<Integer> returnValue = null;
