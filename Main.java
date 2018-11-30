@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Scanner;
 
 public class Main {
@@ -12,14 +10,14 @@ public class Main {
 
     public static void main(String[] args) {
         Main m = new Main();
-        ArrayList <Integer> inputArray;
+        ArrayList<Integer> inputArray;
         // the input is sepatared by spaces
         inputArray = m.read();
         m.start(inputArray);
     }
 
-    ArrayList <Integer> read() {
-        ArrayList <Integer> input = new ArrayList <Integer>();
+    ArrayList<Integer> read() {
+        ArrayList<Integer> input = new ArrayList<Integer>();
         System.out.println("Enter The Array : ");
         String line = in.nextLine();
         String[] nums = line.split(" ");
@@ -29,7 +27,7 @@ public class Main {
         return input;
     }
 
-    void start(ArrayList <Integer> arr) {
+    void start(ArrayList<Integer> arr) {
 
         while (true) {
             System.out.println("Enter your choice :");
@@ -46,74 +44,73 @@ public class Main {
         }
     }
 
-    ArrayList <Integer> copy(ArrayList <Integer> arr) {
-        ArrayList <Integer> temp = new ArrayList <Integer>();
+    ArrayList<Integer> copy(ArrayList<Integer> arr) {
+        ArrayList<Integer> temp = new ArrayList<Integer>();
         for (int i = 0; i < arr.size(); ++i) {
             temp.add(arr.get(i));
         }
         return temp;
     }
 
-    public void operation(ArrayList <Integer> arr, int choice) {
+    public void operation(ArrayList<Integer> arr, int choice) {
 
-        ArrayList <Integer> hold = copy(arr);
+        ArrayList<Integer> hold = copy(arr);
         switch (choice) {
             case 1:
                 sort(hold);
+                System.out.println(hold);
                 break;
             case 2:
-                System.out.println("Enter a String for Palindrome Testing...");
-                Scanner scanner=new Scanner(System.in);
-                String input=scanner.nextLine();
-                ArrayList<String> array=new ArrayList<>();
-                array.add(input);
-                isPalindrome(array);
+                System.out.println(isPalindrome(hold));
                 break;
             case 3:
                 checkSorted(hold);
                 break;
             case 4:
-                countPrimes(hold);
+                System.out.println(countPrimes(hold));
                 break;
             case 5:
-                getMedian(hold);
+                System.out.println(getMedian(hold));
                 break;
             case 6:
-                getMinimum3Numbers(hold);
+                System.out.println(getMinimum3Numbers(hold));
                 break;
             case 7:
-                DistinctArray(hold);
+                System.out.println(DistinctArray(hold));
                 break;
             case 8:
-                mostRepeatedValue(hold);
+                System.out.println(mostRepeatedValue(hold));
                 break;
             case 9:
-                returnOnlyPrimes(hold);
+                System.out.println(returnOnlyPrimes(hold));
                 break;
             case 10:
-                findLargestPrime(hold);
+                System.out.println(findLargestPrime(hold));
                 break;
             case 11:
                 shuffle(hold);
+                System.out.println(hold);
                 break;
             case 12:
-
                 reverseArray(hold);
+                System.out.println(hold);
                 break;
             case 13:
                 shiftArray(hold);
+                System.out.println(hold);
                 break;
             case 14:
-                findSmallestPrime(hold);
+                System.out.println(findSmallestPrime(hold));
                 break;
             case 15:
-                getAverage(hold);
+                System.out.println(getAverage(hold));
                 break;
             case 16:
-                getMaximum3Numbers(hold);
+                System.out.println(getMaximum3Numbers(hold));
                 break;
             case 17:
                 zeroIfLessThanZero(hold);
+                System.out.println(hold);
                 break;
             case 18:
                 executeAll(hold);
@@ -123,40 +120,69 @@ public class Main {
         }
     }
 
-    public void executeAll(ArrayList <Integer> arr) {
+    void executeAll(ArrayList<Integer> arr) {
         for (int i = 1; i <= 17; ++i) {
             operation(arr, i);
         }
     }
 
-    void isPalindrome(ArrayList <String> array) {
-        String b = array.get(0);
-        char[] arr = b.toCharArray();
+    boolean isPrime(int n) {
+        if (n < 2)
+            return false;
+        for (int i = 2; i * i <= n; ++i) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // 20160154
+    void sort(ArrayList<Integer> arr) {
+        for (int i = 1; i < arr.size(); ++i) {
+            Integer temp = arr.get(i);
+            int j = i;
+            for (; j > 0 && temp < arr.get(j - 1); --j)
+                arr.set(j, arr.get(j - 1));
+            arr.set(j, temp);
+        }
+    }
+
+    void reverseArray(ArrayList<Integer> parameter) {
+        ArrayList<Integer> reversed = new ArrayList<>();
+        for (int j = parameter.size() - 1; j >= 0; j--) {
+            int num = parameter.get(j);
+            reversed.add(num);
+        }
+        for (int i = 0; i < parameter.size(); ++i) {
+            parameter.set(i, reversed.get(i));
+        }
+    }
+
+    boolean isPalindrome(ArrayList<Integer> arr) {
         boolean palindrome = true;
-        int length = arr.length;
-        int x = (length / 2);
+        int length = arr.size();
+        int x = length / 2;
         if (length > 0) {
             for (int i = 0; i < x; i++) {
-                if (arr[i] != arr[length - 1 - i])
+                if (arr.get(i) != arr.get(length - 1 - i))
                     palindrome = false;
             }
         }
-        if (palindrome == true) {
-            System.out.println("Yes, It is palindrome");
-        } else {
-            System.out.println("No, It is not palindrome");
+        return palindrome;
+    }
+
+    void zeroIfLessThanZero(ArrayList<Integer> parameter) {
+        for (int i = 0; i < parameter.size(); ++i) {
+            if (parameter.get(i) < 0)
+                parameter.set(i, 0);
         }
     }
 
-    ArrayList <Integer> zeroIfLessThanZero(ArrayList <Integer> parameter) {
-        ArrayList <Integer> returnValue = null;
-        return returnValue;
-    }
-
     //20160146
-    public void DistinctArray(ArrayList <Integer> arr) {
+    ArrayList<Integer> DistinctArray(ArrayList<Integer> arr) {
         int n = arr.size();
-        ArrayList <Integer> Result = new ArrayList <Integer>();
+        ArrayList<Integer> Result = new ArrayList<>();
         boolean Notprint = false;
         for (int i = 0; i < n; i++) {
             int j;
@@ -174,26 +200,14 @@ public class Main {
             }
             Notprint = false;
         }
-        System.out.println("The Distinct array is " + Result);
-
-        return;
+        return Result;
     }
 
-    ArrayList <Integer> returnOnlyPrimes(ArrayList <Integer> parameter) {
-        ArrayList <Integer> returnValue = null;
-        return returnValue;
-    }
-
-    int findSmallestPrime(ArrayList <Integer> parameter) {
+    double getMedian(ArrayList<Integer> parameter) {
         return 0;
     }
 
-    int getMedian(ArrayList <Integer> parameter) {
-        return 0;
-    }
-
-
-    void shuffle(ArrayList <Integer> parameter) {
+    void shuffle(ArrayList<Integer> parameter) {
         int len = parameter.size();
         for (int i = 0; i < len; i++) {
             int index = (int) (Math.random() * len);
@@ -202,11 +216,10 @@ public class Main {
             parameter.set(index, tem);
 
         }
-        System.out.println("The shuffled array is " + parameter);
     }
 
     //20160149
-    public void mostRepeatedValue(ArrayList <Integer> arr) {
+    int mostRepeatedValue(ArrayList<Integer> arr) {
         int menual = 0;
         int counter = 0;
         int tmpCount = 0;
@@ -224,73 +237,85 @@ public class Main {
                 tmpCount = counter;
             }
         }
-
-        System.out.println("The most repeated value is "+menual);
+        return menual;
     }
 
-    void reverseArray(ArrayList <Integer> parameter) {
-        ArrayList <Integer> returnValue = new ArrayList();
-        for (int j = parameter.size() - 1; j >= 0; j--) {
-            int num = parameter.get(j);
-            returnValue.add(num);
+    boolean checkSorted(ArrayList<Integer> parameter) {
+        ArrayList<Integer> tmp = copy(parameter);
+        sort(tmp);
+        for (int i = 0; i < parameter.size(); ++i) {
+            if (parameter.get(i) != tmp.get(i))
+                return false;
         }
-        System.out.println("The Reversed array is " + returnValue);
-    }
-
-    boolean checkSorted(ArrayList <Integer> parameter) {
         return true;
     }
 
-    ArrayList <Integer> shiftArray(ArrayList <Integer> parameter) {
+    ArrayList<Integer> shiftArray(ArrayList<Integer> parameter) {
         return null;
     }
 
-    ArrayList <Integer> getMinimum3Numbers(ArrayList <Integer> parameter) {
-        ArrayList <Integer> returnValue = null;
-        return returnValue;
-    }
-
-    ArrayList <Integer> findLargestPrime(ArrayList <Integer> parameter) {
-        return null;
-    }
-
-    // 20160154
-    void sort(ArrayList <Integer> arr) {
-        for (int i = 1; i < arr.size(); ++i) {
-            Integer temp = arr.get(i);
-            int j = i;
-            for (; j > 0 && temp < arr.get(j - 1); --j)
-                arr.set(j, arr.get(j - 1));
-            arr.set(j, temp);
+    ArrayList<Integer> getMinimum3Numbers(ArrayList<Integer> parameter) {
+        ArrayList<Integer> ret = new ArrayList<Integer>();
+        sort(parameter);
+        for (int i = 0; i < Math.min(parameter.size(), 3); ++i) {
+            ret.add(parameter.get(i));
         }
-        System.out.println("The sorted array is " + arr);
+        return ret;
     }
 
-    int countPrimes(ArrayList <Integer> parameter) {
-        return 0;
+    //return the largest prime, if there is no prime return -1
+    int findLargestPrime(ArrayList<Integer> parameter) {
+        return -1;
     }
 
-    double getAverage(ArrayList <Integer> parameter) {
-        return 0;
+    //return the smallest prime, if there is no prime return -1
+    int findSmallestPrime(ArrayList<Integer> parameter) {
+        sort(parameter);
+        for (int i = 0; i < parameter.size(); ++i) {
+            if (isPrime(parameter.get(i))) {
+                return parameter.get(i);
+            }
+        }
+        return -1;
+    }
+
+    int countPrimes(ArrayList<Integer> parameter) {
+        int ret = 0;
+        for (int i = 0; i < parameter.size(); ++i) {
+            if (isPrime(parameter.get(i)))
+                ++ret;
+        }
+        return ret;
+    }
+
+    ArrayList<Integer> returnOnlyPrimes(ArrayList<Integer> parameter) {
+        ArrayList<Integer> ret = new ArrayList<>();
+        for (int i = 0; i < parameter.size(); ++i) {
+            if (isPrime(parameter.get(i))) {
+                ret.add(parameter.get(i));
+            }
+        }
+        return ret;
+    }
+
+    double getAverage(ArrayList<Integer> parameter) {
+        double ret = 0;
+        for (int i = 0; i < parameter.size(); ++i) {
+            ret += parameter.get(i);
+        }
+        ret /= parameter.size();
+        return ret;
     }
 
     //20160299
-    void getMaximum3Numbers(ArrayList <Integer> v1) {
-        var set = new HashSet(v1);
-        var v = new ArrayList<Integer>(set);
-        Collections.sort(v);
-        Collections.reverse(v);
-
-        System.out.print("The maximum three numbers are : ");
-        System.out.print("[");
-        if (v.size() == 1) {
-            System.out.print(v.get(0));
-        } else if (v.size() == 2) {
-            System.out.print(v.get(0) + ',' + v.get(1));
-        } else
-            System.out.print(v.get(0) + "," + v.get(1) +
-                    "," + v.get(2));
-        System.out.println("]");
+    ArrayList<Integer> getMaximum3Numbers(ArrayList<Integer> parameter) {
+        ArrayList<Integer> ret = new ArrayList<>();
+        sort(parameter);
+        reverseArray(parameter);
+        for (int i = 0; i < Math.min(parameter.size(), 3); ++i) {
+            ret.add(parameter.get(i));
+        }
+        return ret;
     }
 
 }
