@@ -225,8 +225,18 @@ public class Main {
 	}
 
 	ArrayList<Integer> shiftArray(ArrayList<Integer> parameter) {
-		return null;
+		try{
+			int temp = parameter.get(0);
+			for(int i = 0;i<parameter.size()-1;i++)
+				parameter.set(i,parameter.get(i+1));
+			parameter.set(parameter.size()-1,temp);
+		}catch (Exception e)
+		{
+			System.out.print("Array is empty!\n");
+		}
+		return parameter;
 	}
+
 
 	ArrayList<Integer> getMinimum3Numbers(ArrayList<Integer> parameter) {
 		ArrayList<Integer> returnValue = null;
