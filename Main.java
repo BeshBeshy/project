@@ -1,3 +1,4 @@
+package git;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -6,7 +7,7 @@ public class Main {
     String[] list = {"Sort", "Check palindrome", "Check sorted", "Count primes", "Get median", "Minimum 3 numbers",
             "Distinct array", "Most repeated value", "Return only primes", "Find largest prime", "Shuffle",
             "Reverse array", "Shift array", "Find smallest prime", "Get average", "Maximum 3 numbers",
-            "Zero if less than zero", "Execute ALL", "EXIT",};
+            "Zero if less than zero", "Execute ALL", "largeprime" , "EXIT"};
 
     public static void main(String[] args) {
         Main m = new Main();
@@ -35,7 +36,7 @@ public class Main {
                 System.out.println((i + 1) + "- " + list[i]);
             }
             int choice = in.nextInt();
-            if (choice == 19) {
+            if (choice == 20) {
                 System.out.println("You have exited the program");
                 break;
             }
@@ -117,6 +118,7 @@ public class Main {
                 break;
                 
             case 19:
+            	largeprime (hold);
             	if(largeprime (hold)!=-1)
         		{System.out.println("get large prime  :"+ 	largeprime (hold));}
         	
