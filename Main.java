@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class Main {
@@ -10,7 +11,7 @@ public class Main {
             "Zero if less than zero", "Execute ALL", "EXIT",};
 
     public static void main(String[] args) {
-        Max3 m = new Max3();
+        Main m = new Main();
         ArrayList <Integer> inputArray;
         // the input is sepatared by spaces
         inputArray = m.read();
@@ -274,9 +275,12 @@ public class Main {
     }
 
     //20160299
-    void getMaximum3Numbers(ArrayList <Integer> v) {
+    void getMaximum3Numbers(ArrayList <Integer> v1) {
+        var set = new HashSet(v1);
+        var v = new ArrayList<Integer>(set);
         Collections.sort(v);
         Collections.reverse(v);
+
         System.out.print("The maximum three numbers are : ");
         System.out.print("[");
         if (v.size() == 1) {
