@@ -214,10 +214,24 @@ public class Main {
         return Result;
     }
 
-    double getMedian(ArrayList<Integer> parameter) {
-        return 0;
+    double getMedian(ArrayList<Integer> array) {
+        double median = 0;
+		for (int i = 0; i < array.size(); i++) {
+			for (int j = 0; j < array.size(); j++) {
+				if (array.get(i) < array.get(j)) {
+					Integer temp = array.get(i);
+					array.set(i, array.get(j));
+					array.set(j, temp);
+				}
+			}
+		}
+		if (array.size() % 2 != 0) { // size is odd
+			median = array.get(((array.size() + 1) / 2) - 1);
+		} else { // size is even
+			median = (double)(array.get((array.size() / 2)) + array.get((array.size() / 2) - 1)) / 2;
+		}
+		return median;
     }
-
     void shuffle(ArrayList<Integer> parameter) {
         int len = parameter.size();
         for (int i = 0; i < len; i++) {
