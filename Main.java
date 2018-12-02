@@ -93,8 +93,8 @@ public class Main {
                 System.out.println(hold);
                 break;
             case 12:
-                reverseArray(hold);
-                System.out.println(hold);
+                
+                System.out.println(reverseArray(hold));
                 break;
             case 13:
                 shiftArray(hold);
@@ -159,15 +159,14 @@ public class Main {
         }
     }
 
-    void reverseArray(ArrayList<Integer> parameter) {
-        ArrayList<Integer> reversed = new ArrayList<>();
+    ArrayList reverseArray(ArrayList<Integer> parameter) {
+        ArrayList<Integer> returnValue = new ArrayList<>();
         for (int j = parameter.size() - 1; j >= 0; j--) {
             int num = parameter.get(j);
-            reversed.add(num);
+            returnValue.add(num);
         }
-        for (int i = 0; i < parameter.size(); ++i) {
-            parameter.set(i, reversed.get(i));
-        }
+        return returnValue;
+        
     }
 
     boolean isPalindrome(ArrayList<Integer> arr) {
